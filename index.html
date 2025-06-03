@@ -3,9 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Schul.ai - Beta Access</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <title>Schul.ai - AI-Powered Education Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --primary: #02c3f7;
+      --secondary: #268efb;
+      --ui-base: #4f65fa;
+      --accent: #7b3afc;
+      --cta: #b429f3;
+      --bg-color: #f8fafc;
+      --text-primary: #1e293b;
+      --text-secondary: #475569;
+      --section-spacing: 2.5rem;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -14,116 +26,262 @@
     }
 
     body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      background: #f8fafc;
-      color: #333;
+      background-color: var(--bg-color);
+      color: var(--text-primary);
+      line-height: 1.6;
     }
 
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: var(--section-spacing) 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Header Styles */
     header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 2rem;
-      background-color: #ffffff;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      padding: 1.5rem 0;
+      background: linear-gradient(135deg, var(--ui-base), var(--accent));
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
     }
 
-    .logo-container {
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
       display: flex;
       align-items: center;
       gap: 0.75rem;
-    }
-
-    .logo-container img {
-      height: 40px;
-    }
-
-    .logo-container span {
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: #1e293b;
-    }
-
-    header nav a {
-      margin-left: 1.5rem;
       text-decoration: none;
-      color: #2563eb;
-      font-weight: 600;
-      transition: color 0.2s;
     }
 
-    header nav a:hover {
-      color: #1d4ed8;
+    .logo img {
+      height: 40px;
+      filter: brightness(0) invert(1);
     }
 
-    .banner {
-      position: relative;
-      background: url('https://source.unsplash.com/1600x600/?education,technology') no-repeat center center/cover;
-      height: 60vh;
+    .logo span {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding-top: calc(var(--section-spacing) + 80px);
+      text-align: center;
+      background: linear-gradient(135deg, rgba(2, 195, 247, 0.1), rgba(123, 58, 252, 0.1));
+      min-height: 48vh;
       display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      background: linear-gradient(135deg, var(--primary), var(--cta));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      max-width: 800px;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 800px;
+      margin: 0 auto 2rem;
+    }
+
+    .hero-image {
+      position: absolute;
+      right: -10%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50%;
+      max-width: 600px;
+      opacity: 0.1;
+      z-index: 0;
+    }
+
+    .cta-container {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    /* Section Styles */
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      color: var(--ui-base);
+      text-align: center;
+    }
+
+    .sections-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .section-content {
+      max-width: 100%;
+      margin: 0;
+      text-align: left;
+    }
+
+    .section-content p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+
+    /* Collapsible Sections */
+    .collapsible-section {
+      background: white;
+      border-radius: 12px;
+      margin: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .collapsible-header {
+      padding: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(135deg, var(--secondary), var(--ui-base));
+      color: white;
+    }
+
+    .collapsible-header h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .collapsible-content {
+      padding: 1.5rem;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      flex: 1;
+    }
+
+    .collapsible-section.collapsed .collapsible-content {
+      padding: 0;
+      max-height: 0;
+    }
+
+    .section-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Button Styles */
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: transform 0.2s;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Section Backgrounds */
+    .about-section {
+      background: linear-gradient(135deg, rgba(2, 195, 247, 0.05), rgba(123, 58, 252, 0.05));
+    }
+
+    .building-section {
+      background: linear-gradient(135deg, rgba(38, 142, 251, 0.05), rgba(79, 101, 250, 0.05));
+    }
+
+    .matters-section {
+      background: linear-gradient(135deg, rgba(123, 58, 252, 0.05), rgba(180, 41, 243, 0.05));
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      text-align: center;
+      color: white;
+      padding: 3rem 0;
+    }
+
+    .cta-section .section-title,
+    .cta-section p {
+      color: white;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-section .section-content {
+      display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      color: white;
     }
 
-    .banner::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
+    .cta-section .cta-button {
+      margin-top: 2rem;
+      background: white;
+      color: var(--ui-base);
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
     }
 
-    .banner-content {
-      position: relative;
-      z-index: 1;
-      max-width: 700px;
-    }
-
-    .banner-content h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .banner-content p {
-      font-size: 1.2rem;
-    }
-
-    .about {
-      padding: 4rem 2rem;
-      text-align: center;
-      background-color: #fff;
-    }
-
-    .about h3 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #1e293b;
-    }
-
-    .about p {
-      max-width: 700px;
-      margin: 0 auto;
-      font-size: 1.15rem;
-      color: #475569;
-      line-height: 1.75rem;
-    }
-
+    /* Footer */
     footer {
-      padding: 1rem;
-      background-color: #1e293b;
-      color: white;
+      padding: 3rem 0;
+      background: var(--ui-base);
       text-align: center;
-      font-size: 0.95rem;
+      color: white;
     }
 
     footer a {
-      color: #60a5fa;
+      color: var(--primary);
       text-decoration: none;
     }
 
@@ -131,48 +289,176 @@
       text-decoration: underline;
     }
 
-    @media (max-width: 600px) {
-      .banner-content h2 {
-        font-size: 1.8rem;
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .sections-grid {
+        grid-template-columns: 1fr;
       }
-      .about h3 {
-        font-size: 1.6rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
       }
-      header nav a {
-        margin-left: 1rem;
-        font-size: 0.9rem;
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .container {
+        padding: 0 1rem;
+      }
+
+      section {
+        padding: 2rem 0;
+      }
+
+      .hero-image {
+        display: none;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo-container">
-      <img src="https://neolumina.in/SCHUL_LOGO.svg" alt="Schul.ai Logo" />
-      <span>schul.ai</span>
+    <div class="container header-content">
+      <a href="/" class="logo">
+        <img src="https://neolumina.in/SCHUL_LOGO.svg" alt="Schul.ai Logo">
+        <span>schul.ai</span>
+      </a>
     </div>
-    <nav>
-      <a href="https://beta.schul.ai/login">Login</a>
-      <a href="https://beta.schul.ai/register">Sign Up</a>
-    </nav>
   </header>
 
-  <section class="banner">
-    <div class="banner-content">
-      <h2>Reimagining Education with AI</h2>
-      <p>Join our beta and experience how AI can empower your learning journey.</p>
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Let Teachers Teach. Let AI Do the Rest.</h1>
+      <p>We're building Schul.ai to take the load off educators and administrators—so schools can focus on teaching, not tasks.</p>
+      <div class="cta-container">
+        <a href="beta-signup.html" class="cta-button">Join Our Beta</a>
+      </div>
+    </div>
+    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Education Technology" class="hero-image">
+  </section>
+
+  <section class="about-section">
+    <div class="container">
+      <h2 class="section-title">AI That Works With Schools—Not Around Them</h2>
+      <div class="sections-grid">
+        <div class="collapsible-section" data-row="about">
+          <div class="collapsible-header">
+            <h3>Our Approach</h3>
+            <span class="toggle-icon">-</span>
+          </div>
+          <div class="collapsible-content">
+            <p>Schul.ai is a purpose-built platform designed to strengthen how schools operate and support educators in their daily work.</p>
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Team Collaboration" class="section-image">
+          </div>
+        </div>
+        <div class="collapsible-section" data-row="about">
+          <div class="collapsible-header">
+            <h3>Our Research</h3>
+            <span class="toggle-icon">-</span>
+          </div>
+          <div class="collapsible-content">
+            <p>We're currently in beta, shaped by real-world feedback, collaborative design, and deep research into what schools actually need.</p>
+            <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Research and Development" class="section-image">
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="about">
-    <h3>About Us</h3>
-    <p>
-      Schul.ai is a cutting-edge educational platform powered by AI. Our mission is to make personalized learning accessible and effective for every student. From intelligent study guidance to interactive content, we’re here to transform your learning experience.
-    </p>
+  <section class="building-section">
+    <div class="container">
+      <h2 class="section-title">Grounded Tools for Real Needs</h2>
+      <div class="sections-grid">
+        <div class="collapsible-section" data-row="building">
+          <div class="collapsible-header">
+            <h3>Teacher Tools</h3>
+            <span class="toggle-icon">-</span>
+          </div>
+          <div class="collapsible-content">
+            <p>We're focused on tools that help educators manage, reflect, and grow. Our platform supports lesson prep and teacher development.</p>
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Digital Tools" class="section-image">
+          </div>
+        </div>
+        <div class="collapsible-section" data-row="building">
+          <div class="collapsible-header">
+            <h3>Admin Features</h3>
+            <span class="toggle-icon">-</span>
+          </div>
+          <div class="collapsible-content">
+            <p>Our platform fits into the way schools already work, supporting administrative workflows. It's modular, scalable, and built on cloud infrastructure.</p>
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Administrative Tools" class="section-image">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="matters-section">
+    <div class="container">
+      <h2 class="section-title">Not Just an Idea—A Working Platform</h2>
+      <div class="sections-grid">
+        <div class="collapsible-section" data-row="matters">
+          <div class="collapsible-header">
+            <h3>Current Status</h3>
+            <span class="toggle-icon">-</span>
+          </div>
+          <div class="collapsible-content">
+            <p>Schul.ai is live with early adopters and evolving fast. What's available now is only the beginning.</p>
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Platform Development" class="section-image">
+          </div>
+        </div>
+        <div class="collapsible-section" data-row="matters">
+          <div class="collapsible-header">
+            <h3>Future Plans</h3>
+            <span class="toggle-icon">-</span>
+          </div>
+          <div class="collapsible-content">
+            <p>We're actively building new capabilities that will continue rolling out in future versions—always with educator input at the core.</p>
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Future Development" class="section-image">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="section-content">
+        <h2 class="section-title">Be Part of What's Next</h2>
+        <p>If you're part of a forward-thinking school or care about practical change in education, we'd love to talk. We're here to reduce overhead, amplify what works, and help schools do more with less effort.</p>
+        <a href="beta-signup.html" class="cta-button" style="background: white; color: var(--ui-base);">Request Early Access</a>
+      </div>
+    </div>
   </section>
 
   <footer>
-    Powered by <a href="https://neolumina.in/" target="_blank">Neolumina</a>
+    <div class="container">
+      <p>Questions? Email us at <a href="mailto:support@schul.ai">support@schul.ai</a></p>
+    </div>
   </footer>
+
+  <script>
+    document.querySelectorAll('.collapsible-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const section = header.parentElement;
+        const row = section.getAttribute('data-row');
+        const icon = header.querySelector('.toggle-icon');
+        
+        // Toggle all sections in the same row
+        document.querySelectorAll(`.collapsible-section[data-row="${row}"]`).forEach(s => {
+          s.classList.toggle('collapsed');
+          s.querySelector('.toggle-icon').textContent = s.classList.contains('collapsed') ? '+' : '-';
+        });
+      });
+    });
+
+    // Initialize all sections as expanded
+    document.querySelectorAll('.collapsible-section').forEach(section => {
+      section.classList.remove('collapsed');
+    });
+  </script>
 </body>
 </html>
