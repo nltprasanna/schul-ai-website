@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Schul.ai Beta Program</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+    <style>
+        :root {
+            --primary: #02c3f7;
+            --secondary: #268efb;
+            --ui-base: #4f65fa;
+            --accent: #7b3afc;
+            --cta: #b429f3;
+            --bg-color: #f8fafc;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --error: #ef4444;
+            --success: #22c55e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            padding: 1.5rem 0;
+            background: linear-gradient(135deg, var(--ui-base), var(--accent));
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 40px;
+            filter: brightness(0) invert(1);
+        }
+
+        .logo span {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .form-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .required::after {
+            content: " *";
+            color: var(--error);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(2, 195, 247, 0.1);
+        }
+
+        .error {
+            border-color: var(--error);
+        }
+
+        .error-message {
+            color: var(--error);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .phone-group {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 1rem;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .submit-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .note {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            background: var(--success);
+            color: white;
+            border-radius: 6px;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .phone-group {
+                grid-template-columns: 180px 1fr;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+
+        .country-code-select {
+            position: relative;
+            min-width: 200px;
+        }
+
+        .country-code-select select {
+            padding-left: 2.5rem;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .country-code-select .flag-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1.2rem;
+            height: 1.2rem;
+            z-index: 1;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="/" class="logo">
+                <img src="https://neolumina.in/SCHUL_LOGO.svg" alt="Schul.ai Logo">
+                <span>schul.ai</span>
+            </a>
+        </div>
+    </header>     
+    <iframe width="100%" height="1000px" src="https://forms.office.com/r/u1sEzYxxdH?embed=true" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
+    <script>
+        // Form validation and dynamic behavior
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('betaSignupForm');
+            const roleSelect = document.getElementById('role');
+            const otherRoleGroup = document.getElementById('otherRoleGroup');
+            const institutionGroup = document.getElementById('institutionGroup');
+            const countrySelect = document.getElementById('country');
+            const stateSelect = document.getElementById('state');
+            const emailInput = document.getElementById('email');
+            const phoneInput = document.getElementById('phone');
+            const languageSelect = document.getElementById('language');
+            const otherLanguageGroup = document.getElementById('otherLanguageGroup');
+
+            // Show/hide other role input
+            roleSelect.addEventListener('change', function() {
+                if (this.value === 'other') {
+                    otherRoleGroup.style.display = 'block';
+                    document.getElementById('otherRole').required = true;
+                } else {
+                    otherRoleGroup.style.display = 'none';
+                    document.getElementById('otherRole').required = false;
+                }
+
+                // Show/hide institution field
+                if (this.value === 'independent') {
+                    institutionGroup.style.display = 'none';
+                    document.getElementById('institution').required = false;
+                } else {
+                    institutionGroup.style.display = 'block';
+                    document.getElementById('institution').required = true;
+                }
+            });
+
+            // Show/hide other language input
+            languageSelect.addEventListener('change', function() {
+                if (this.value === 'other') {
+                    otherLanguageGroup.style.display = 'block';
+                    document.getElementById('otherLanguage').required = true;
+                } else {
+                    otherLanguageGroup.style.display = 'none';
+                    document.getElementById('otherLanguage').required = false;
+                }
+            });
+
+            // Email validation
+            emailInput.addEventListener('input', function() {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(this.value)) {
+                    this.classList.add('error');
+                    this.nextElementSibling.classList.add('show');
+                } else {
+                    this.classList.remove('error');
+                    this.nextElementSibling.classList.remove('show');
+                }
+            });
+
+            // Country codes with flags
+            const countryCodes = [
+                { code: '+91', country: 'IN', name: 'India' },
+                { code: '+1', country: 'US', name: 'United States' },
+                { code: '+44', country: 'GB', name: 'United Kingdom' },
+                { code: '+61', country: 'AU', name: 'Australia' },
+                { code: '+86', country: 'CN', name: 'China' },
+                { code: '+81', country: 'JP', name: 'Japan' },
+                { code: '+49', country: 'DE', name: 'Germany' },
+                { code: '+33', country: 'FR', name: 'France' },
+                { code: '+39', country: 'IT', name: 'Italy' },
+                { code: '+34', country: 'ES', name: 'Spain' },
+                { code: '+55', country: 'BR', name: 'Brazil' },
+                { code: '+52', country: 'MX', name: 'Mexico' },
+                { code: '+27', country: 'ZA', name: 'South Africa' },
+                { code: '+971', country: 'AE', name: 'UAE' },
+                { code: '+65', country: 'SG', name: 'Singapore' },
+                { code: '+82', country: 'KR', name: 'South Korea' },
+                { code: '+31', country: 'NL', name: 'Netherlands' },
+                { code: '+41', country: 'CH', name: 'Switzerland' },
+                { code: '+46', country: 'SE', name: 'Sweden' },
+                { code: '+47', country: 'NO', name: 'Norway' }
+            ];
+
+            const countryCodeSelect = document.getElementById('countryCode');
+            const flagIcon = document.querySelector('.country-code-select .flag-icon');
+
+            countryCodes.forEach(country => {
+                const option = document.createElement('option');
+                option.value = country.code;
+                option.textContent = `${country.code} (${country.name})`;
+                option.dataset.country = country.country;
+                countryCodeSelect.appendChild(option);
+            });
+
+            // Update flag when country code changes
+            countryCodeSelect.addEventListener('change', function() {
+                const selectedOption = this.options[this.selectedIndex];
+                const countryCode = selectedOption.dataset.country;
+                flagIcon.className = `flag-icon flag-icon-${countryCode.toLowerCase()}`;
+            });
+
+            // Phone validation based on country code
+            phoneInput.addEventListener('input', function() {
+                const countryCode = countryCodeSelect.value;
+                let phoneRegex;
+                
+                // Different validation patterns for different countries
+                switch(countryCode) {
+                    case '+91': // India
+                        phoneRegex = /^\d{10}$/;
+                        break;
+                    case '+1': // US/Canada
+                        phoneRegex = /^\d{10}$/;
+                        break;
+                    case '+44': // UK
+                        phoneRegex = /^\d{10,11}$/;
+                        break;
+                    default:
+                        phoneRegex = /^\d{7,15}$/; // Generic international format
+                }
+
+                if (!phoneRegex.test(this.value)) {
+                    this.classList.add('error');
+                    this.parentElement.nextElementSibling.classList.add('show');
+                } else {
+                    this.classList.remove('error');
+                    this.parentElement.nextElementSibling.classList.remove('show');
+                }
+            });
+
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Basic form validation
+                let isValid = true;
+                const requiredFields = form.querySelectorAll('[required]');
+                
+                requiredFields.forEach(field => {
+                    if (!field.value) {
+                        field.classList.add('error');
+                        field.nextElementSibling.classList.add('show');
+                        isValid = false;
+                    }
+                });
+
+                if (isValid) {
+                    // Show success message
+                    document.querySelector('.success-message').style.display = 'block';
+                    form.reset();
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        document.querySelector('.success-message').style.display = 'none';
+                    }, 5000);
+                }
+            });
+
+            // Populate countries
+            const countries = [
+                { code: 'IN', name: 'India' },
+                { code: 'US', name: 'United States' },
+                { code: 'GB', name: 'United Kingdom' },
+                { code: 'CA', name: 'Canada' },
+                { code: 'AU', name: 'Australia' },
+                { code: 'ZA', name: 'South Africa' },
+                { code: 'NG', name: 'Nigeria' },
+                { code: 'KE', name: 'Kenya' },
+                { code: 'EG', name: 'Egypt' },
+                { code: 'GH', name: 'Ghana' },
+                { code: 'ET', name: 'Ethiopia' },
+                { code: 'TZ', name: 'Tanzania' },
+                { code: 'UG', name: 'Uganda' },
+                { code: 'RW', name: 'Rwanda' }
+            ];
+
+            countries.forEach(country => {
+                const option = document.createElement('option');
+                option.value = country.code;
+                option.textContent = country.name;
+                countrySelect.appendChild(option);
+            });
+
+            // Populate states based on country
+            const states = {
+                'IN': [
+                    'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh',
+                    'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand',
+                    'Karnataka', 'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur',
+                    'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Punjab',
+                    'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Tripura',
+                    'Uttar Pradesh', 'Uttarakhand', 'West Bengal'
+                ],
+                'US': [
+                    'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado',
+                    'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho',
+                    'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+                    'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+                    'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada',
+                    'New Hampshire', 'New Jersey', 'New Mexico', 'New York',
+                    'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon',
+                    'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota',
+                    'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington',
+                    'West Virginia', 'Wisconsin', 'Wyoming'
+                ],
+                'GB': [
+                    'England', 'Scotland', 'Wales', 'Northern Ireland'
+                ],
+                'CA': [
+                    'Alberta', 'British Columbia', 'Manitoba', 'New Brunswick',
+                    'Newfoundland and Labrador', 'Northwest Territories', 'Nova Scotia',
+                    'Nunavut', 'Ontario', 'Prince Edward Island', 'Quebec',
+                    'Saskatchewan', 'Yukon'
+                ],
+                'AU': [
+                    'Australian Capital Territory', 'New South Wales', 'Northern Territory',
+                    'Queensland', 'South Australia', 'Tasmania', 'Victoria', 'Western Australia'
+                ],
+                'ZA': [
+                    'Eastern Cape', 'Free State', 'Gauteng', 'KwaZulu-Natal',
+                    'Limpopo', 'Mpumalanga', 'Northern Cape', 'North West', 'Western Cape'
+                ],
+                'NG': [
+                    'Abia', 'Adamawa', 'Akwa Ibom', 'Anambra', 'Bauchi', 'Bayelsa',
+                    'Benue', 'Borno', 'Cross River', 'Delta', 'Ebonyi', 'Edo', 'Ekiti',
+                    'Enugu', 'FCT', 'Abuja', 'Gombe', 'Imo', 'Jigawa', 'Kaduna',
+                    'Kano', 'Katsina', 'Kebbi', 'Kogi', 'Kwara', 'Lagos', 'Nasarawa',
+                    'Niger', 'Ogun', 'Ondo', 'Osun', 'Oyo', 'Plateau', 'Rivers',
+                    'Sokoto', 'Taraba', 'Yobe', 'Zamfara'
+                ],
+                'KE': [
+                    'Baringo', 'Bomet', 'Bungoma', 'Busia', 'Elgeyo Marakwet', 'Embu',
+                    'Garissa', 'Homa Bay', 'Isiolo', 'Kajiado', 'Kakamega', 'Kericho',
+                    'Kiambu', 'Kilifi', 'Kirinyaga', 'Kisii', 'Kisumu', 'Kitui',
+                    'Kwale', 'Laikipia', 'Lamu', 'Machakos', 'Makueni', 'Mandera',
+                    'Marsabit', 'Meru', 'Migori', 'Mombasa', 'Murang\'a', 'Nairobi',
+                    'Nakuru', 'Nandi', 'Narok', 'Nyamira', 'Nyandarua', 'Nyeri',
+                    'Samburu', 'Siaya', 'Taita Taveta', 'Tana River', 'Tharaka Nithi',
+                    'Trans Nzoia', 'Turkana', 'Uasin Gishu', 'Vihiga', 'Wajir', 'West Pokot'
+                ],
+                'EG': [
+                    'Alexandria', 'Aswan', 'Asyut', 'Beheira', 'Beni Suef', 'Cairo',
+                    'Dakahlia', 'Damietta', 'Faiyum', 'Gharbia', 'Giza', 'Ismailia',
+                    'Kafr El Sheikh', 'Luxor', 'Matrouh', 'Minya', 'Monufia', 'New Valley',
+                    'North Sinai', 'Port Said', 'Qalyubia', 'Qena', 'Red Sea',
+                    'Sharqia', 'Sohag', 'South Sinai', 'Suez'
+                ],
+                'GH': [
+                    'Ahafo', 'Ashanti', 'Bono', 'Bono East', 'Central', 'Eastern',
+                    'Greater Accra', 'North East', 'Northern', 'Oti', 'Savannah',
+                    'Upper East', 'Upper West', 'Volta', 'Western', 'Western North'
+                ],
+                'ET': [
+                    'Addis Ababa', 'Afar', 'Amhara', 'Benishangul-Gumuz', 'Dire Dawa',
+                    'Gambela', 'Harari', 'Oromia', 'Somali', 'Southern Nations, Nationalities, and Peoples',
+                    'Tigray'
+                ],
+                'TZ': [
+                    'Arusha', 'Dar es Salaam', 'Dodoma', 'Geita', 'Iringa', 'Kagera',
+                    'Katavi', 'Kigoma', 'Kilimanjaro', 'Lindi', 'Manyara', 'Mara',
+                    'Mbeya', 'Morogoro', 'Mtwara', 'Mwanza', 'Njombe', 'Pemba North',
+                    'Pemba South', 'Pwani', 'Rukwa', 'Ruvuma', 'Shinyanga', 'Simiyu',
+                    'Singida', 'Songwe', 'Tabora', 'Tanga', 'Unguja North', 'Unguja South',
+                    'Zanzibar North', 'Zanzibar South and Central'
+                ],
+                'UG': [
+                    'Abim', 'Adjumani', 'Agago', 'Alebtong', 'Amolatar', 'Amudat',
+                    'Amuria', 'Amuru', 'Apac', 'Arua', 'Budaka', 'Bududa', 'Bugiri',
+                    'Bugweri', 'Buhweju', 'Buikwe', 'Bukedea', 'Bukomansimbi', 'Bukwo',
+                    'Bulambuli', 'Buliisa', 'Bundibugyo', 'Bunyangabu', 'Bushenyi',
+                    'Busia', 'Butaleja', 'Butambala', 'Butebo', 'Buvuma', 'Buyende',
+                    'Central', 'Dokolo', 'Eastern', 'Gomba', 'Gulu', 'Hoima', 'Ibanda',
+                    'Iganga', 'Isingiro', 'Jinja', 'Kaabong', 'Kabale', 'Kabarole',
+                    'Kaberamaido', 'Kagadi', 'Kakumiro', 'Kalangala', 'Kaliro', 'Kalungu',
+                    'Kampala', 'Kamuli', 'Kamwenge', 'Kanungu', 'Kapchorwa', 'Kapelebyong',
+                    'Karenga', 'Kasese', 'Katakwi', 'Kayunga', 'Kazo', 'Kibaale',
+                    'Kiboga', 'Kibuku', 'Kitagwenda', 'Kitgum', 'Koboko', 'Kole',
+                    'Kotido', 'Kumi', 'Kwania', 'Kween', 'Kyankwanzi', 'Kyegegwa',
+                    'Kyenjojo', 'Kyotera', 'Lamwo', 'Lira', 'Luuka', 'Luwero',
+                    'Lwengo', 'Lyantonde', 'Madi-Okollo', 'Manafwa', 'Maracha',
+                    'Masaka', 'Masindi', 'Mayuge', 'Mbale', 'Mbarara', 'Mitooma',
+                    'Mityana', 'Moroto', 'Moyo', 'Mpigi', 'Mubende', 'Mukono',
+                    'Nabilatuk', 'Nakapiripirit', 'Nakaseke', 'Nakasongola', 'Namayingo',
+                    'Namisindwa', 'Namutumba', 'Napak', 'Nebbi', 'Ngora', 'Northern',
+                    'Ntoroko', 'Ntungamo', 'Nwoya', 'Omoro', 'Otuke', 'Oyam', 'Pader',
+                    'Pakwach', 'Pallisa', 'Rakai', 'Rubanda', 'Rubirizi', 'Rukiga',
+                    'Rukungiri', 'Rwampara', 'Sembabule', 'Serere', 'Sheema', 'Sironko',
+                    'Soroti', 'Tororo', 'Wakiso', 'Western', 'Yumbe', 'Zombo'
+                ],
+                'RW': [
+                    'Eastern', 'Kigali', 'Northern', 'Southern', 'Western'
+                ]
+            };
+
+            countrySelect.addEventListener('change', function() {
+                const countryCode = this.value;
+                stateSelect.innerHTML = '<option value="">Select state</option>';
+                
+                if (states[countryCode]) {
+                    states[countryCode].forEach(state => {
+                        const option = document.createElement('option');
+                        option.value = state;
+                        option.textContent = state;
+                        stateSelect.appendChild(option);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
